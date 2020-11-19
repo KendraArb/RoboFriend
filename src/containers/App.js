@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { setSearchfield, requestRobots } from '../actions';
 
+import Header from '../components/Header';
 import Scroll from '../components/Scroll';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
@@ -31,11 +32,11 @@ class App extends Component {
 	render() {
 		const { robots, searchField, onSearchChange, isPending } = this.props;
 		const filteredRobots = robots.filter(robot => {
-			return robot.name.toLowerCase().includes(searchField);
+			return robot.name.toLowerCase().includes(searchField.toLowerCase());
 		});
 		return (
 			<div className="tc">
-				<h1 className="f1">RoboFriends</h1>
+				<Header />
 				<SearchBox search={onSearchChange} />
 				<Scroll>
 					{isPending ? (
